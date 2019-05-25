@@ -9,15 +9,16 @@ export class DishService {
 
   constructor() { }
 
-  getDishes(): Dish []{
-    return DISHES;
+  getDishes(): Promise<Dish[]>{
+    console.log('entrei bruno');
+    return Promise.resolve(DISHES);
   }
 
-  getDish(id: string): Dish {
-    return DISHES.filter((dish) => (dish.id === id))[0];
+  getDish(id: string): Promise<Dish> {
+    return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]);
   }
 
-  getFeatureDish(): Dish {
-    return DISHES.filter((dish) => dish.featured)[0];
+  getFeatureDish(): Promise<Dish> {
+    return Promise.resolve(DISHES.filter((dish) => dish.featured)[0]);
   }
 }
