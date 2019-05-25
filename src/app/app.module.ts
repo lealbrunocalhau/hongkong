@@ -1,12 +1,13 @@
 import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
-import { BrowserAnimationsModule } from '@angular/platform-browser/animations'
+import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
 
 
 //Import Modules
-import { FlexLayoutModule } from '@angular/flex-layout'
+import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from "@angular/forms";
+import { ReactiveFormsModule } from '@angular/forms';
 //Material Design Modules
 import { MatButtonModule } from "@angular/material/button";
 import { MatCardModule } from "@angular/material/card";
@@ -16,7 +17,9 @@ import { MatFormFieldModule } from "@angular/material/form-field";
 import { MatGridListModule } from "@angular/material/grid-list";
 import { MatInputModule } from "@angular/material/input";
 import { MatListModule } from "@angular/material/list";
-import { MatToolbarModule } from '@angular/material/toolbar'
+import { MatSelectModule } from '@angular/material/select';
+import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatToolbarModule } from '@angular/material/toolbar';
 //Components
 import { AppComponent } from './app.component';
 import { AboutComponent } from './about/about.component';
@@ -52,8 +55,9 @@ import { LeaderService } from './services/leader.service';
     BrowserModule,
     AppRoutingModule,
     BrowserAnimationsModule,
-    FormsModule,
     FlexLayoutModule,
+    FormsModule,
+    ReactiveFormsModule,
     MatButtonModule,    
     MatCardModule,
     MatCheckboxModule,
@@ -62,6 +66,8 @@ import { LeaderService } from './services/leader.service';
     MatGridListModule,
     MatInputModule,
     MatListModule,
+    MatSelectModule,
+    MatSlideToggleModule,
     MatToolbarModule,
   ],
   entryComponents: [
