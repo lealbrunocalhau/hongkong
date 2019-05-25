@@ -26,6 +26,7 @@ fxLayoutGap.xs="0">
         </mat-card-actions>
       </mat-card>
   </div>
+ 
   
   <div fxFlex="40" *ngIf="dish">
      <!-- Assignment Task 3 -->
@@ -38,5 +39,9 @@ fxLayoutGap.xs="0">
         <p matLine> -- {{comment.author}} {{comment.date | date}} </p>
       </mat-list-item>
     </mat-list>
+  </div>
+  <div [hidden]='dish'>
+      <mat-spinner></mat-spinner>
+      <h4>Loading...Please Wait</h4>
   </div>
 </div>
