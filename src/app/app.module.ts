@@ -20,6 +20,7 @@ import { MatListModule } from "@angular/material/list";
 import { MatProgressSpinnerModule } from "@angular/material/progress-spinner";
 import { MatSelectModule } from '@angular/material/select';
 import { MatSlideToggleModule } from '@angular/material/slide-toggle';
+import { MatSliderModule } from "@angular/material/slider";
 import { MatToolbarModule } from '@angular/material/toolbar';
 //Components
 import { AppComponent } from './app.component';
@@ -69,6 +70,7 @@ import { LeaderService } from './services/leader.service';
     MatListModule,
     MatProgressSpinnerModule,
     MatSelectModule,
+    MatSliderModule,
     MatSlideToggleModule,
     MatToolbarModule,
   ],
