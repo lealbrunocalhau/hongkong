@@ -8,7 +8,6 @@ import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Comment } from "../shared/comment";
 
 
-
 @Component({
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
@@ -16,34 +15,34 @@ import { Comment } from "../shared/comment";
 })
 export class DishdetailComponent implements OnInit {
 
-  commentForm: FormGroup;
-  comment: Comment;
-
-  errMess: string;
-
-  @ViewChild('cform') comentFormDirective;
-
   @Input()
-  dish : Dish;
+  dish: Dish;
   dishIds: string[];
   prev: string;
   next: string;
 
+  @ViewChild('cform') comentFormDirective;
+  commentForm: FormGroup;
+  comment: Comment;
+  errMess: string;
+
+  dishcopy: Dish;
+
   formErrors = {
     'author': '',
-    'comment': ''   
+    'comment': ''
   };
 
   validationMessages = {
     'author': {
-      'required':      'Name is required.',
-      'minlength':     'Name must be at least 2 characters long.'
+      'required': 'Name is required.',
+      'minlength': 'Name must be at least 2 characters long.'
     },
     'comment': {
-      'required':      'Comment is required.',
-      'minlength':     'Name must be at least 2 characters long.'
+      'required': 'Comment is required.',
+      'minlength': 'Name must be at least 2 characters long.'
     }
-    
+
   };
 
   constructor(
@@ -52,37 +51,41 @@ export class DishdetailComponent implements OnInit {
     private location: Location,
     private fb: FormBuilder,
     @Inject('BaseURL') private baseURL
-  ) { 
+  ) {
     this.createForm();
   }
 
   ngOnInit() {
     this.dishService.getDishIds().subscribe(
-      dishIds => this.dishIds = dishIds);
-    this.route.params.pipe(switchMap((params: Params) => this.dishService
-    .getDish(params['id'])))
-    .subscribe(dish => {
-      this.dish = dish;
-      this.setPrevNext(dish.id)
-    },
+      dishIds => this.dishIds = dishIds,
       errmess => this.errMess = <any>errmess);
+
+    this.route.params
+      .pipe(switchMap((params: Params) => this.dishService.getDish(params['id'])))
+      .subscribe(
+        dish => {
+          this.dish = dish;
+          this.dishcopy = dish;
+          this.setPrevNext(dish.id)
+        },
+        errmess => this.errMess = <any>errmess);
     // const id = this.route.snapshot.params['id'];
     // this.dishService.getDish(id)
     // .subscribe(dish => this.dish = dish);
     // .then(dish => this.dish = dish);
   }
 
-  
+
   createForm() {
     this.commentForm = this.fb.group({
       author: ['', [Validators.required, Validators.minLength(2)]],
-      rating: [5, Validators.required], 
-      comment: ['', Validators.required],      
-      date: '',      
+      rating: [5, Validators.required],
+      comment: ['', Validators.required],
+      date: '',
     });
 
     this.commentForm.valueChanges
-    .subscribe(data => this.onValueChanged(data));
+      .subscribe(data => this.onValueChanged(data));
 
     this.onValueChanged();
 
@@ -108,33 +111,52 @@ export class DishdetailComponent implements OnInit {
     }
   }
 
-  setPrevNext(dishId: string){
+  setPrevNext(dishId: string) {
     const index = this.dishIds.indexOf(dishId);
     this.prev = this.dishIds[(this.dishIds.length + index - 1) % this.dishIds.length];
     this.next = this.dishIds[(this.dishIds.length + index + 1) % this.dishIds.length];
   }
 
-  goBack(){
+  goBack() {
     this.location.back();
   }
 
-  onSubmit(){
-    var dateComment = new Date();
-    var dataIsoString = dateComment.toISOString();
-    
-    this.commentForm.value.date = dataIsoString;
-    // console.log('meu form', this.commentForm.value)
-    // console.log('Borraaa mlk bom antes:', this.dish.comments)
-    this.dish.comments.push(this.commentForm.value)
-    // console.log('Borraaa mlk bom depois:', this.dish.comments)
+  onSubmit() {
     this.comment = this.commentForm.value;
+    this.comment.date = new Date().toISOString()
+    console.log(this.comment);
+    this.dishcopy.comments.push(this.comment);
+    this.dishService.putDish(this.dishcopy)
+      .subscribe(
+        dish => {
+          this.dish = dish;
+          this.dishcopy = dish;
+        },
+        errmess => {
+          this.dish = null;
+          this.dishcopy = null;
+          this.errMess = <any>errmess;
+        })
+
     this.comentFormDirective.resetForm();
     this.commentForm.reset({
       author: '',
       rating: 5,
       comments: '',
-      date: ''      
-    });
+      date: ''
+    })
+    ///antigo On Submit() estudar...
+    // var dateComment = new Date();
+    // var dataIsoString = dateComment.toISOString();
+    // this.commentForm.value.date = dataIsoString;
+    // this.dish.comments.push(this.commentForm.value)
+    // this.comment = this.commentForm.value;
+    // this.comentFormDirective.resetForm();
+    // this.commentForm.reset({
+    //   author: '',
+    //   rating: 5,
+    //   comments: '',
+    //   date: ''
+    // });
   }
-
 }
