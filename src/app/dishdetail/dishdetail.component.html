@@ -1,7 +1,7 @@
 <!-- Assignment Task 1 -->
 <div class="container" fxLayout="row" fxLayout.sm="column" fxLayout.xs="column"
   fxLayoutAlign.gt-md="space-around center" fxLayoutGap="10px" fxLayoutGap.xs="0">
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="55" *ngIf="dish" [@visibility]='visibility'>
     <mat-card>
       <mat-card-header>
         <mat-card-title>
@@ -21,7 +21,9 @@
         <button mat-button (click)='goBack()'>BACK</button>
         <button mat-button>LIKE</button>
         <button mat-button>SHARE</button>
+       
         <span class="flex-spacer"></span>
+       
         <button mat-button [routerLink]="['/dishdetail',next]">
           <span class="fa fa-chevron-right fa-lg"></span>
         </button>
@@ -30,7 +32,7 @@
   </div>
 
 
-  <div fxFlex="40" *ngIf="dish">
+  <div fxFlex="20" *ngIf="dish"  [@visibility]='visibility'>
     <mat-list fxFlex>
       <h3>Comments aqui</h3>
       <mat-list-item *ngFor="let comment of dish.comments">
