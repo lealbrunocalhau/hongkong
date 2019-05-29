@@ -2,7 +2,9 @@ import { BrowserModule } from '@angular/platform-browser';
 import { NgModule } from '@angular/core';
 import { BrowserAnimationsModule } from '@angular/platform-browser/animations';
 import { AppRoutingModule } from './app-routing/app-routing.module';
+import { HttpClientModule } from "@angular/common/http";
 
+import { baseURL } from "./shared/baseurl";
 
 //Import Modules
 import { FlexLayoutModule } from '@angular/flex-layout';
@@ -55,6 +57,7 @@ import { LeaderService } from './services/leader.service';
   ],
   imports: [
     BrowserModule,
+    HttpClientModule,
     AppRoutingModule,
     BrowserAnimationsModule,
     FlexLayoutModule,
@@ -77,7 +80,12 @@ import { LeaderService } from './services/leader.service';
   entryComponents: [
     LoginComponent,
   ],
-  providers: [DishService, LeaderService, PromotionService],
+  providers: [
+    DishService,
+    LeaderService,
+    PromotionService,
+    {provide: 'BaseURL', useValue: baseURL}
+  ],
   bootstrap: [AppComponent]
 })
 export class AppModule { }

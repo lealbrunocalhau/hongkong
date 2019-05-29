@@ -1,4 +1,4 @@
-import { Component, OnInit, Input, ViewChild, } from '@angular/core';
+import { Component, OnInit, Input, ViewChild, Inject } from '@angular/core';
 import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { ActivatedRoute, Params } from '@angular/router';
@@ -6,6 +6,7 @@ import { Location } from '@angular/common';
 import { switchMap } from "rxjs/operators";
 import { FormGroup, FormBuilder, Validators } from '@angular/forms';
 import { Comment } from "../shared/comment";
+
 
 
 @Component({
@@ -48,6 +49,7 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
+    @Inject('BaseURL') private baseURL
   ) { 
     this.createForm();
   }
@@ -113,8 +115,10 @@ export class DishdetailComponent implements OnInit {
   }
 
   onSubmit(){
-    const dateComment = new Date();
-    this.commentForm.value.date = dateComment;
+    var dateComment = new Date();
+    var dataIsoString = dateComment.toISOString();
+    
+    this.commentForm.value.date = dataIsoString;
     // console.log('meu form', this.commentForm.value)
     // console.log('Borraaa mlk bom antes:', this.dish.comments)
     this.dish.comments.push(this.commentForm.value)
