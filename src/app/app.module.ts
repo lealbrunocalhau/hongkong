@@ -6,6 +6,7 @@ import { HttpClientModule } from "@angular/common/http";
 
 import { baseURL } from "./shared/baseurl";
 
+
 //Import Modules
 import { FlexLayoutModule } from '@angular/flex-layout';
 import { FormsModule } from "@angular/forms";
@@ -38,6 +39,7 @@ import { MenuComponent } from './menu/menu.component';
 import 'hammerjs';
 
 //services
+import { ProcessHTTPMsgService } from "./services/process-httpmsg.service";
 import { DishService } from './services/dish.service';
 import { PromotionService } from './services/promotion.service';
 import { LeaderService } from './services/leader.service';
@@ -81,6 +83,7 @@ import { LeaderService } from './services/leader.service';
     LoginComponent,
   ],
   providers: [
+    ProcessHTTPMsgService,
     DishService,
     LeaderService,
     PromotionService,

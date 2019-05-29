@@ -1,22 +1,28 @@
 import { Injectable } from '@angular/core';
 import { Dish } from '../shared/dish';
-import { DISHES } from '../shared/dishes';
+//import { DISHES } from '../shared/dishes';
 import { of, Observable } from "rxjs";
-import { delay } from "rxjs/operators";
+//import { delay } from "rxjs/operators";
 
-import { map } from "rxjs/operators";
+import { map, catchError } from "rxjs/operators";
 import { HttpClient } from "@angular/common/http";
 import { baseURL } from "../shared/baseurl";
+
+import { ProcessHTTPMsgService } from "./process-httpmsg.service";
 
 @Injectable({
   providedIn: 'root'
 })
 export class DishService {
 
-  constructor(private http: HttpClient) { }
+  constructor(
+    private http: HttpClient,
+    private processHTTPMsgService: ProcessHTTPMsgService) { }
 
   getDishes(): Observable<Dish[]>{
-    return this.http.get<Dish[]>(baseURL + 'dishes');
+    return this.http.get<Dish[]>(baseURL + 'dishes')
+      //adicionando tratamento para pegar o erro caso exista no HTTP GET
+    .pipe(catchError(this.processHTTPMsgService.handleError));
     //return of(DISHES).pipe(delay(2000));
     //    return of(DISHES).pipe(delay(2000)).toPromise();
     // return Promise.resolve(DISHES);
@@ -28,6 +34,7 @@ export class DishService {
 
   getDish(id: string): Observable<Dish> {
     return this.http.get<Dish>(baseURL + 'dishes/' + id)
+    .pipe(catchError(this.processHTTPMsgService.handleError));
     //return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000));
     //return of(DISHES.filter((dish) => (dish.id === id))[0]).pipe(delay(2000)).toPromise();
     //return Promise.resolve(DISHES.filter((dish) => (dish.id === id))[0]);
@@ -38,8 +45,9 @@ export class DishService {
   }
 
   getFeatureDish(): Observable<Dish> {
-     return this.http.get<Dish[]>(baseURL + 'dishes?featured=true')
-    .pipe(map(dishes => dishes[0]));
+     return this.http.get<Dish[]>(baseURL + 'dishesss?featured=true')
+    .pipe(map(dishes => dishes[0]))
+    .pipe(catchError(this.processHTTPMsgService.handleError));
     //Esse map acima transforma um array de dishes em unico dish
 
     //return of(DISHES.filter((dish) => dish.featured)[0]).pipe(delay(2000));
@@ -53,8 +61,8 @@ export class DishService {
 
   getDishIds(): Observable<number[] | any>{
     return this.getDishes()
-    .pipe(map(dishes => dishes.map(dish => dish.id))
-    )
+    .pipe(map(dishes => dishes.map(dish => dish.id)))
+    .pipe(catchError(error => error));
     //return of(DISHES.map(dish=> dish.id));
   }
 }
