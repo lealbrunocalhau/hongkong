@@ -2,7 +2,9 @@ import { Component, OnInit, ViewChild } from '@angular/core';
 import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 
 import { Feedback, ContactType } from '../shared/feedback';
-import { flyInOut } from '../animations/app.animation';
+import { flyInOut, expand } from '../animations/app.animation';
+import { FeedbackService } from '../services/feedback.service';
+import { delay } from 'rxjs/operators';
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',
@@ -12,13 +14,20 @@ import { flyInOut } from '../animations/app.animation';
     'style': 'display: block;'
   },
   animations: [
+    expand(),
     flyInOut()
   ]
 })
 export class ContactComponent implements OnInit {
 
+  visibilityForm = true;
+  visibilitySpinner = false;
+  visibilityForm2 = false;
+  
+  errMess: string;
   feedbackForm: FormGroup;
   feedback: Feedback;
+  feedbackReturn: Feedback;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
   
@@ -28,10 +37,6 @@ export class ContactComponent implements OnInit {
     'telnum': '',
     'email': '',
   };
-
-
-
- 
 
   validationMessages = {
     'firstname': {
@@ -55,7 +60,10 @@ export class ContactComponent implements OnInit {
     },
   };
 
-  constructor(private fb: FormBuilder) {
+  constructor(
+    private fb: FormBuilder,
+    private feedbackService: FeedbackService
+    ) {
     this.createForm();
   }
 
@@ -100,18 +108,41 @@ export class ContactComponent implements OnInit {
   }
 
   onSubmit() {
+    this.visibilityForm = false;
+    this.visibilitySpinner = true;
     this.feedback = this.feedbackForm.value;
-    console.log(this.feedback);
-    this.feedbackForm.reset({
-      firstname: '',
-      lastname: '',
-      telnum: '',
-      email: '',
-      agree: false,
-      contacttype: 'None',
-      message: ''
-    });
-    this.feedbackFormDirective.resetForm();
+    this.feedbackService.submitFeedback(this.feedback)
+    .subscribe(
+      feedback => {
+        this.feedbackReturn = feedback;
+        this.visibilitySpinner = false;
+        this.visibilityForm = false;
+        this.visibilityForm2 = true;
+        // console.log('copy:', this.feedbackCopy)
+        // console.log('entrei na resposta do service; delay abaixo')
+        //this.visibilityForm = true;
+        // this.dishcopy = dish;
+        // this.setPrevNext(dish.id);
+        setTimeout(()=> {
+          //console.log('entrei no timeout')
+          this.feedbackReturn = null;
+          this.visibilityForm2 = false;
+          this.visibilityForm = true;          
+        }, 5000)
+                  
+      },
+      errmess => this.errMess = <any>errmess);
+      this.feedbackForm.reset({
+        firstname: '',
+        lastname: '',
+        telnum: '',
+        email: '',
+        agree: false,
+        contacttype: 'None',
+        message: ''
+      });
+      this.feedbackFormDirective.resetForm();
+   
   }
 
 }
