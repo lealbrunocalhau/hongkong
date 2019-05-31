@@ -4,7 +4,7 @@ import { FormBuilder, FormGroup, Validators } from '@angular/forms';
 import { Feedback, ContactType } from '../shared/feedback';
 import { flyInOut, expand } from '../animations/app.animation';
 import { FeedbackService } from '../services/feedback.service';
-import { delay } from 'rxjs/operators';
+
 @Component({
   selector: 'app-contact',
   templateUrl: './contact.component.html',

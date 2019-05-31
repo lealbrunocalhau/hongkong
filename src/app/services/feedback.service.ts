@@ -18,13 +18,13 @@ export class FeedbackService {
     @Inject('BaseURL') private baseURL
   ) { }
 
-  submitFeedback(feedback: any) : Observable<any>{
+  submitFeedback(feedback: any) : Observable<Feedback>{
     const httpOptions = {
       headers: new HttpHeaders({
         'Content-Type': 'application/json'
       })
     };
-    return this.http.post<any>(baseURL + 'feedback', feedback, httpOptions)
+    return this.http.post<Feedback>(baseURL + 'feedback', feedback, httpOptions)
             .pipe(catchError(this.processHTTPMsgService.handleError))
   }
 }
