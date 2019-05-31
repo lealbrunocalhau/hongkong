@@ -45,7 +45,7 @@ export class DishService {
   }
 
   getFeatureDish(): Observable<Dish> {
-     return this.http.get<Dish[]>(baseURL + 'dishesss?featured=true')
+     return this.http.get<Dish[]>(baseURL + 'dishes?featured=true')
     .pipe(map(dishes => dishes[0]))
     .pipe(catchError(this.processHTTPMsgService.handleError));
     //Esse map acima transforma um array de dishes em unico dish
