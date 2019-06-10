@@ -1,0 +1,98 @@
+    1  ls
+    2  pwd
+    3  cd area de trabalho
+    4  cd OneDrive/
+    5  ls
+    6  cd "Area de Trabalho"
+    7  cd Área de Trabalho/
+    8  cd "Área de Trabalho"
+    9  ls
+   10  cd cursera/
+   11  exit
+   12  git config --user.email "calhau.bruno88@gmail.com"
+   13  git config user.email "calhau.bruno88@gmail.com"
+   14  ls
+   15  cd conFusion/
+   16  git init
+   17  git config user.email "calhau.bruno88@gmail.com"
+   18  git remote add origin 
+   19  git remote add origin https://calhaubruno@bitbucket.org/calhaubruno/curso.git
+   20  git status
+   21  git add .
+   22  git commit -m "Commit Inicial - Projeto 0"
+   23  git push -u origin
+   24  git push -u origin master
+   25  git push -u origin master
+   26  git status
+   27  ls
+   28  git push -u origin master
+   29  git init
+   30  git status
+   31  git push -u origin master
+   32  d
+   33  git remote add origin https://calhaubruno@bitbucket.org/calhaubruno/cursera.git
+   34  git init
+   35  git remote add origin https://calhaubruno@bitbucket.org/calhaubruno/cursera.git
+   36  git remote -v
+   37  git remote rm
+   38  git remote rm origin
+   39  git remote -v
+   40  git remote add origin https://calhaubruno@bitbucket.org/calhaubruno/cursera.git
+   41  git status
+   42  git commit -m "Commit Inicial - Angular 6.2.1 Instalado"
+   43  git push -u origin master
+   44  git log --online
+   45  git log --oneline
+   46  npm -v
+   47  code .
+   48  pwd
+   49  npm install -g @angular/cli@6.2.1
+   50  ng -v
+   51  ng new conFusion --style=scss
+   52  ls
+   53  cd conFusion/
+   54  ng serve -o
+   55  ls
+   56  cd OneDrive/
+   57  cd "Area de Trabalho"
+   58  ls
+   59  cd 'Area de Trabalho'
+   60  cd Área\ de\ Trabalho/
+   61  ls
+   62  cd cursera/
+   63  ls
+   64  cd conFusion/
+   65  code .
+   66  code .
+   67  code .
+   68  ls
+   69  cd OneDrive/
+   70  ls
+   71  cd Área\ de\ Trabalho/
+   72  ls
+   73  cd cursera/
+   74  cd conFusion/
+   75  code .
+   76  ls
+   77  cd OneDrive/
+   78  cd Área\ de\ Trabalho/
+   79  cd cursera/
+   80  cd conFusion/
+   81  code .
+   82  code .
+   83  exit
+   84  git status
+   85  git add .
+   86  git commit -m "Assignment 4 - Funcionando"
+   87  git status
+   88  git add .
+   89  git commit -m "Assignment 4 - correcoes finais"
+   90  git push --origin
+   91  git push -origin
+   92  git push -u origin master
+   93  cat history >> bruno_leal_log_hong_kong.txt
+   94  cat history > bruno_leal_log_hong_kong.txt
+   95  cat history
+   96  cat ./history
+   97  history
+   98  history >> bruno_leal_hong_kong.txt
