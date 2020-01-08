@@ -11,6 +11,7 @@ import { flyInOut, expand } from '../animations/app.animation';
   selector: 'app-home',
   templateUrl: './home.component.html',
   styleUrls: ['./home.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
@@ -28,11 +29,13 @@ export class HomeComponent implements OnInit {
   leaderErrMess: string;
   promotion: Promotion;
   leader: Leader;
+
+  baseURL = 'http://localhost:4331/assets/';
   constructor(
     private dishService: DishService,
     private promotionService: PromotionService,
     private leaderService: LeaderService,
-    @Inject('BaseURL') private baseURL
+    // @Inject('BaseURL') private baseURL
   ) { }
 
   ngOnInit() {
@@ -41,14 +44,14 @@ export class HomeComponent implements OnInit {
       dish => this.dish = dish,
       errmess => this.dishErrMess = <any>errmess);
     // .then(dish => this.dish = dish);
-    
+
     this.promotionService.getFeaturedPromotion()
     .subscribe(
       promotion => this.promotion = promotion,
       errmess => this.promoErrMess = <any>errmess
       );
     // .then(promotion => this.promotion = promotion);
-    
+
     this.leaderService.getFeaturedLeader()
     .subscribe(
       leader => this.leader = leader,

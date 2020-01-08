@@ -13,6 +13,7 @@ import { visibility, flyInOut, expand } from '../animations/app.animation';
   selector: 'app-dishdetail',
   templateUrl: './dishdetail.component.html',
   styleUrls: ['./dishdetail.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
@@ -25,6 +26,7 @@ import { visibility, flyInOut, expand } from '../animations/app.animation';
 })
 export class DishdetailComponent implements OnInit {
 
+  baseURL = 'http://localhost:4331/assets/';
   visibility = 'show';
 
   @Input()
@@ -62,7 +64,7 @@ export class DishdetailComponent implements OnInit {
     private route: ActivatedRoute,
     private location: Location,
     private fb: FormBuilder,
-    @Inject('BaseURL') private baseURL
+    //@Inject('BaseURL') private baseURL
   ) {
     this.createForm();
   }

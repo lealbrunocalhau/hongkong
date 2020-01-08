@@ -1,5 +1,5 @@
 import { Component, OnInit, Inject } from '@angular/core';
-import { Dish } from "../shared/dish";
+import { Dish } from '../shared/dish';
 import { DishService } from '../services/dish.service';
 import { flyInOut, expand } from '../animations/app.animation';
 
@@ -7,6 +7,7 @@ import { flyInOut, expand } from '../animations/app.animation';
   selector: 'app-menu',
   templateUrl: './menu.component.html',
   styleUrls: ['./menu.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'false',
     'style': 'display: block;'
@@ -19,12 +20,13 @@ import { flyInOut, expand } from '../animations/app.animation';
 export class MenuComponent implements OnInit {
 
   dishes: Dish[];
-  //selectedDish: Dish;
+  // selectedDish: Dish;
   errMess: string;
-  
-  constructor( 
+  baseURL = 'http://localhost:4331/assets/';
+  constructor(
     private dishService: DishService,
-    @Inject('BaseURL') private baseURL) { }
+    // @Inject('BaseURL') private baseURL
+    ) { }
 
   ngOnInit() {
     this.dishService.getDishes()

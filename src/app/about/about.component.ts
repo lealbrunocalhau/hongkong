@@ -8,6 +8,7 @@ import { flyInOut, expand } from '../animations/app.animation';
   selector: 'app-about',
   templateUrl: './about.component.html',
   styleUrls: ['./about.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
@@ -21,10 +22,12 @@ export class AboutComponent implements OnInit {
 
   leaders: Leader[];
   leaderErrMess: string;
+  baseURL = 'http://localhost:4331/assets/';
 
-  constructor( 
+  constructor(
     private leaderService: LeaderService,
-    @Inject('BaseURL') private baseURL ) { }
+    // @Inject('BaseURL') private baseURL
+    ) { }
 
   ngOnInit() {
     this.leaderService.getLeaders()
