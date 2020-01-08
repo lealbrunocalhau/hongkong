@@ -6,7 +6,8 @@ Versão funcionando mas precisa ser iniciado o JSON SERVER para ter acesso ao DA
 => json-server --watch db.json -d 2000
 **Paramentro -d serve para adicionar um DELAY
 
-
+Para o correto funcionamento a aplicação deve estar funcionando na porta 4220, visto que os components
+home.component.ts, dishdetail.component.ts, menu.component.ts e about.component.ts, possuem fixo no codigo o apontamento para essa variavel.
 
 
 # ConFusion

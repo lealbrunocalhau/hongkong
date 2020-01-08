@@ -22,7 +22,7 @@ export class MenuComponent implements OnInit {
   dishes: Dish[];
   // selectedDish: Dish;
   errMess: string;
-  baseURL = 'http://localhost:4331/assets/';
+  baseURL = 'http://localhost:4220/assets/';
   constructor(
     private dishService: DishService,
     // @Inject('BaseURL') private baseURL

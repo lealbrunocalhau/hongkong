@@ -22,7 +22,7 @@ export class AboutComponent implements OnInit {
 
   leaders: Leader[];
   leaderErrMess: string;
-  baseURL = 'http://localhost:4331/assets/';
+  baseURL = 'http://localhost:4220/assets/';
 
   constructor(
     private leaderService: LeaderService,

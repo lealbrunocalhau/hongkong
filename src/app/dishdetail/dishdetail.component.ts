@@ -26,7 +26,7 @@ import { visibility, flyInOut, expand } from '../animations/app.animation';
 })
 export class DishdetailComponent implements OnInit {
 
-  baseURL = 'http://localhost:4331/assets/';
+  baseURL = 'http://localhost:4220/assets/';
   visibility = 'show';
 
   @Input()
