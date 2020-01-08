@@ -30,7 +30,7 @@ export class HomeComponent implements OnInit {
   promotion: Promotion;
   leader: Leader;
 
-  baseURL = 'http://localhost:4220/assets/';
+  baseURL = 'http://0.0.0.0:4220/assets/';
   constructor(
     private dishService: DishService,
     private promotionService: PromotionService,
