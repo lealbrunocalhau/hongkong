@@ -1,3 +1,14 @@
+# Bruno
+Material produzido para o curso da Faculdade de Sciense e Technology de Hong Kong!
+
+Versão funcionando mas precisa ser iniciado o JSON SERVER para ter acesso ao DATABASE
+
+=> json-server --watch db.json -d 2000
+**Paramentro -d serve para adicionar um DELAY
+
+
+
+
 # ConFusion
 
 This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.

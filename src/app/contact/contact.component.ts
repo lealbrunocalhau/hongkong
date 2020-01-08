@@ -9,6 +9,7 @@ import { FeedbackService } from '../services/feedback.service';
   selector: 'app-contact',
   templateUrl: './contact.component.html',
   styleUrls: ['./contact.component.scss'],
+  // tslint:disable-next-line:use-host-property-decorator
   host: {
     '[@flyInOut]': 'true',
     'style': 'display: block;'
@@ -23,14 +24,14 @@ export class ContactComponent implements OnInit {
   visibilityForm = true;
   visibilitySpinner = false;
   visibilityForm2 = false;
-  
+
   errMess: string;
   feedbackForm: FormGroup;
   feedback: Feedback;
   feedbackReturn: Feedback;
   contactType = ContactType;
   @ViewChild('fform') feedbackFormDirective;
-  
+
   formErrors = {
     'firstname': '',
     'lastname': '',
@@ -52,7 +53,6 @@ export class ContactComponent implements OnInit {
     'telnum': {
       'required':      'Tel. number is required.',
       'pattern':       'Tel. number must contain only numbers.'
-      
     },
     'email': {
       'required':      'Email is required.',
@@ -120,16 +120,16 @@ export class ContactComponent implements OnInit {
         this.visibilityForm2 = true;
         // console.log('copy:', this.feedbackCopy)
         // console.log('entrei na resposta do service; delay abaixo')
-        //this.visibilityForm = true;
+        // this.visibilityForm = true;
         // this.dishcopy = dish;
         // this.setPrevNext(dish.id);
-        setTimeout(()=> {
-          //console.log('entrei no timeout')
+        setTimeout( () => {
+        // console.log('entrei no timeout')
           this.feedbackReturn = null;
           this.visibilityForm2 = false;
-          this.visibilityForm = true;          
-        }, 5000)
-                  
+          this.visibilityForm = true;
+        }, 5000 );
+
       },
       errmess => this.errMess = <any>errmess);
       this.feedbackForm.reset({
@@ -142,7 +142,6 @@ export class ContactComponent implements OnInit {
         message: ''
       });
       this.feedbackFormDirective.resetForm();
-   
   }
 
 }
