@@ -2,6 +2,7 @@
   "name": "con-fusion",
   "version": "0.0.0",
   "scripts": {
+    "bruno": "json-server --watch  ./json-server/db.json -d 2000 -p 3250 > /dev/null 2>&1 &",
     "ng": "ng",
     "start": "ng serve --port 4220 --host 0.0.0.0",
     "build": "ng build",
