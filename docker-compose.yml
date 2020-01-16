@@ -1,0 +1,13 @@
+version: "3"
+
+services:
+    hongkong:
+        build: ./angulardocker
+        command: bash -c "npm install --silent && npm run bruno && npm start"
+        container_name: hk_angular
+        working_dir: /app
+        volumes:
+          - .:/app
+        ports:
+            - "4220:4220"
+            - "3250:3250"

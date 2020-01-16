@@ -1,39 +1,21 @@
-# Bruno
+# Confusion - Angular 
+
+Aplicação em angular 6.
+
 Material produzido para o curso da Faculdade de Sciense e Technology de Hong Kong!
 
-Versão funcionando mas precisa ser iniciado o JSON SERVER para ter acesso ao DATABASE
+# Iniciar projeto
 
-=> json-server --watch db.json -d 2000
-**Paramentro -d serve para adicionar um DELAY
+Para iniciar a aplicação, basta clonar o repositorio e ####caso tenha o DOCKER instalado, basta rodar o comando:
 
-Para o correto funcionamento a aplicação deve estar funcionando na porta 4220, visto que os components
-home.component.ts, dishdetail.component.ts, menu.component.ts e about.component.ts, possuem fixo no codigo o apontamento para essa variavel.
+`docker-compose up`
 
+O sistema estará disponivel em:
+`http:localhost:4220`
 
-# ConFusion
+Será montando um json-server na porta 3250
+`http://localhost:3250`
 
-This project was generated with [Angular CLI](https://github.com/angular/angular-cli) version 6.2.1.
+# Observações
 
-## Development server
-
-Run `ng serve` for a dev server. Navigate to `http://localhost:4200/`. The app will automatically reload if you change any of the source files.
-
-## Code scaffolding
-
-Run `ng generate component component-name` to generate a new component. You can also use `ng generate directive|pipe|service|class|guard|interface|enum|module`.
-
-## Build
-
-Run `ng build` to build the project. The build artifacts will be stored in the `dist/` directory. Use the `--prod` flag for a production build.
-
-## Running unit tests
-
-Run `ng test` to execute the unit tests via [Karma](https://karma-runner.github.io).
-
-## Running end-to-end tests
-
-Run `ng e2e` to execute the end-to-end tests via [Protractor](http://www.protractortest.org/).
-
-## Further help
-
-To get more help on the Angular CLI use `ng help` or go check out the [Angular CLI README](https://github.com/angular/angular-cli/blob/master/README.md).
+Apesar da aplicação possuir uma Dialog de Login, não existe implementação de login funcional!
